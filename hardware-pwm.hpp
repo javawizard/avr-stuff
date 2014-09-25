@@ -1,7 +1,5 @@
 
-#ifndef __AVR_ATtiny861__
-#error "This (presumably) only works on the ATtiny861 at the moment."
-#endif
+#include <avr/io.h>
 
 /*
 To use, call setup() once, then just change the values of channel1, channel2,
@@ -15,6 +13,9 @@ Note that this takes over timer 1, so make sure you don't need it.
 
 namespace HardwarePWM {
     void setup(void) {
+        FDDRB1 = 1;
+        FDDRB3 = 1;
+        FDDRB5 = 1;
         // Set the clock source and prescaling for the timer
         TCCR1B |= 0b00000011;
         // Enable PWM
@@ -32,11 +33,11 @@ namespace HardwarePWM {
         // And we should be good to go.
         TCNT1 = 0;
         OCR1A = 0;
-        OCR1B = 0;
-        OCR1D = 32;
+        OCR1B = 128;
+        OCR1D = 0;
     }
     
-    uint8_t& channel1 = OCR1A;
-    uint8_t& channel2 = OCR1B;
-    uint8_t& channel3 = OCR1D;
+    volatile uint8_t& channel1 = OCR1A;
+    volatile uint8_t& channel2 = OCR1B;
+    volatile uint8_t& channel3 = OCR1D;
 }
