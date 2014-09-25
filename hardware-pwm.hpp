@@ -1,5 +1,6 @@
 
 #include <avr/io.h>
+#include "bitfield.h"
 
 /*
 To use, call setup() once, then just change the values of channel1, channel2,

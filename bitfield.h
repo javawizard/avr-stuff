@@ -1,3 +1,5 @@
+#ifndef BITFIELD_H
+#define BITFIELD_H
 
 typedef struct {
     uint8_t bit0:1;
@@ -81,6 +83,6 @@ typedef struct {
 #define FDDRB6 (FDDRB->bit6)
 #define FDDRB7 (FDDRB->bit7)
 
-
+#endif
 
 
